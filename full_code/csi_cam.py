@@ -1,3 +1,7 @@
+# Implementation of CSI camera as a Class.
+# 
+
+
 import cv2
 import time
 from threading import Thread
@@ -30,10 +34,11 @@ def gstreamer_pipeline(
     )
 
 class csiCamera:
-    def __init__(self, width = 1920, height = 1080, display = False, flip = 2):
+    def __init__(self, width = 1920, height = 1080, framerate = 30, display = False, flip = 2):
         self.display = display
         self.width = width
         self.height = height
+        self.framerate = framerate
         self.flip = flip
 
         self.pipeline = gstreamer_pipeline(
@@ -41,7 +46,7 @@ class csiCamera:
             capture_height = height,
             display_width = width,
             display_height = height,
-            framerate = 30,
+            framerate = framerate,
             flip_method = flip)
         self.cap = None
         self.capture_thread = None
@@ -52,10 +57,10 @@ class csiCamera:
 
     def __eq__(self, other):
         return (other != None and self.display == other.display and
-                self.width == other.width and self.flip == other.flip)
+                self.width == other.width and self.flip == other.flip and self.framerate==other.framerate)
     
     def __repr__(self):
-        return "Height: {}\nWidth: {}\nDisplay? {}\nFlip:{}".format(self.height, self.width, self.display, self.flip)
+        return "Height: {}\nWidth: {}\nDisplay? {}\nFramerate: {}\nFlip:{}".format(self.height, self.width, self.display, self.framerate, self.flip)
 
     def __del__(self):
         self.stopCamera()
