@@ -2,6 +2,7 @@ import csi_cam
 import cv2
 import time
 from PIL import Image
+import celery_tasks  
 
 camera = csi_cam.csiCamera()
 img = camera.getFrame()
@@ -18,6 +19,7 @@ end_time = time.time()
 
 print(type(img))
 print(img.shape)
+celery_tasks.save.delay(img.tolist(), 1)
 img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 GGAM = Image.fromarray(img)
 GGAM.save("images/frame{}.jpeg".format(3))

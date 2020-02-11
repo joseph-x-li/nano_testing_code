@@ -1,18 +1,21 @@
 from celery import Celery
 import cv2
 
-app = Celery('tasks', broker='amqp://jet2:1990@localhost:5672/master')
+# app = Celery('tasks', broker='amqp://jet2:1990@172.24.132.16:5672/master')
+app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
 
 @app.task
 def save(frame, frameNumber):
-    cv2.imwrite("images/frame{}.jpg".format(frameNumbe), frame))
+    frame = asarray(frame)
+    cv2.imwrite("images/frame{}.jpg".format(frameNumber), frame)
 
 @app.task
 def initDisplay():
-    global window_handle = cv2.namedWindow("Camera Stream", cv2.WINDOW_AUTOSIZE)
+    window_handle = cv2.namedWindow("Camera Stream", cv2.WINDOW_AUTOSIZE)
 
 @app.task
 def displayFrame(frame):
+    frame = asarray(frame)
     cv2.imshow("Camera Stream", frame)
     
 
