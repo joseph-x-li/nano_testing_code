@@ -60,7 +60,7 @@ class csiCamera:
                 self.width == other.width and self.flip == other.flip and self.framerate==other.framerate)
     
     def __repr__(self):
-        return "Height: {}\nWidth: {}\nDisplay? {}\nFramerate: {}\nFlip:{}".format(self.height, self.width, self.display, self.framerate, self.flip)
+        return "Height: {}\nWidth: {}\nDisplay? {}\nFramerate: {}\nFlip: {}".format(self.height, self.width, self.display, self.framerate, self.flip)
 
     def __del__(self):
         self.stopCamera()
