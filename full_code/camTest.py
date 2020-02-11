@@ -12,7 +12,6 @@ numFrames = 30
 for i in range(numFrames):
     img = camera.getFrame()
     while img is None:
-        print("waste")
         img = camera.getFrame()
 
 end_time = time.time()

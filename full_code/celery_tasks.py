@@ -1,12 +1,13 @@
 from celery import Celery
 import cv2
+import numpy as np
 
 # app = Celery('tasks', broker='amqp://jet2:1990@172.24.132.16:5672/master')
 app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
 
 @app.task
 def save(frame, frameNumber):
-    frame = asarray(frame)
+    frame = np.asarray(frame)
     cv2.imwrite("images/frame{}.jpg".format(frameNumber), frame)
 
 @app.task
