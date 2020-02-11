@@ -1,10 +1,17 @@
 from celery import Celery
-from tasks import add
+import cv2
 
 app = Celery('tasks', broker='amqp://jet2:1990@localhost:5672/master')
 
 @app.task
 def save(frame, frameNumber):
+    cv2.imwrite("images/frame{}.jpg".format(frameNumbe) frame))
+@app.task
+def initDisplay():
+    global window_handle = cv2.namedWindow("Camera Stream", cv2.WINDOW_AUTOSIZE)
+@app.task
+def displayFrame(frame):
+    cv2.imshow("Camera Stream", frame)
     
 
 #  (broker)
