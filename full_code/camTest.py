@@ -10,7 +10,7 @@ img = camera.getFrame()
 start_time = time.time()
 numFrames = 30
 
-celery_tasks.delay.initDisplay()
+celery_tasks.initDisplay.delay()
 
 for i in range(numFrames):
     img = camera.getFrame()
@@ -20,7 +20,7 @@ for i in range(numFrames):
     celery_tasks.displayFrame.delay(img.tolist())
     print("frame: {}".format(i))
 
-celery_tasks.delay.killDisplay()
+celery_tasks.killDisplay.delay()
 end_time = time.time()
 
 print(type(img))
