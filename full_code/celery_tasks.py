@@ -7,7 +7,7 @@ app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
 
 @app.task
 def save(frame, frameNumber):
-    frame = np.asarray(frame)
+    frame = np.frombuffer(frame, dtype=int)
     cv2.imwrite("images/frame{}.jpg".format(frameNumber), frame)
 
 @app.task
@@ -16,7 +16,7 @@ def initDisplay():
 
 @app.task
 def displayFrame(frame):
-    frame = asarray(frame)
+    frame = np.frombuffer(frame, dtype=int)
     cv2.imshow("Camera Stream", frame)
     
 
