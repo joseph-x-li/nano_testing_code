@@ -26,6 +26,7 @@ def killDisplay():
 def displayFrame(frame):
     frame = np.asarray(frame)
     cv2.imshow("Camera Stream", frame)
+    cv2.waitKey()
     
 
 #  (broker)
