@@ -23,10 +23,10 @@ def killDisplay():
 
 
 @app.task
-def displayFrame(frame):
+def displayFrame(frame, seconds):
     frame = np.asarray(frame)
     cv2.imshow("Camera Stream", frame)
-    cv2.waitKey()
+    cv2.waitKey(seconds*1000)
     
 
 #  (broker)
