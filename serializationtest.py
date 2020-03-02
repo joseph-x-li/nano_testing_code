@@ -22,8 +22,9 @@ end = time.time()
 pickle_dec_time = end-start
 print("Decoding type: {}".format(type(pickle_dec)))
 print("Encoding time: {}\nDecoding time: {}".format(pickle_enc_time, pickle_dec_time)) 
+assert (fakeFrame == pickle_dec).all()
 
-
+fakeFrame = np.random.randint(255, size=(1920, 1080, 3)) # make a fake image of proper size
 
 # msgpack_numpy
 print("Now testing: msgpack-numpy")
@@ -39,30 +40,22 @@ end = time.time()
 msgpack_dec_time = end-start
 print("Decoding type: {}".format(type(msgpack_dec)))
 print("Encoding time: {}\nDecoding time: {}".format(msgpack_enc_time, msgpack_dec_time))
+assert (fakeFrame == msgpack_dec).all()
 
+fakeFrame = np.random.randint(255, size=(1920, 1080, 3)) # make a fake image of proper size
 
-
-# JSON
-print("Now testing: JSON")
+# tolist
+print("Now testing: tolist")
 start = time.time()
-json_enc = json.dumps([str(fakeFrame.dtype), base64.b64encode(fakeFrame), fakeFrame.shape])
+tolist_enc = fakeFrame.tolist()
 end = time.time()
-print("Encoding type: {}".format(type(json_enc)))
-json_enc_time = end-start
+print("Encoding type: {}".format(type(tolist_enc)))
+tolist_enc_time = end-start
 
 start = time.time()
-# get the encoded json dump
-enc = json.loads(json_enc)
-# build the numpy data type
-dataType = numpy.dtype(enc[0])
-# decode the base64 encoded numpy array data and create a new numpy array with this data & type
-dataArray = numpy.frombuffer(base64.decodestring(enc[1]), dataType)
-# if the array had more than one data set it has to be reshaped
-if len(enc) > 2:
-     dataArray.reshape(enc[2])   # return the reshaped numpy array containing several data sets
-
+tolist_dec = np.asarray(tolist_enc)
 end = time.time()
-json_dec_time = end-start
-print("Decoding type: {}".format(type(json_dec)))
-print("Encoding time: {}\nDecoding time: {}".format(json_enc_time, json_dec_time))
+tolist_dec_time = end-start
+print("Decoding type: {}".format(type(tolist_dec)))
+print("Encoding time: {}\nDecoding time: {}".format(tolist_enc_time, tolist_dec_time))
 
