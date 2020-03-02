@@ -21,7 +21,7 @@ def initDisplay():
 
 @app.task
 def killDisplay():
-    cv2.destroyAllWindows()
+    cv2.destroyAllWindows() 
 
 
 @app.task
