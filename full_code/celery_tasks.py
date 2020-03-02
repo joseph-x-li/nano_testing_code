@@ -6,8 +6,8 @@ import msgpack_numpy as m
 
 global window_handle 
 
-# app = Celery('tasks', broker='amqp://jet2:1990@172.24.132.16:5672/master')
-app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
+app = Celery('tasks', broker='amqp://jet2:1990@10.0.0.20:5672/master')
+# app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
 
 @app.task
 def save(frame, frameNumber):
@@ -26,9 +26,9 @@ def killDisplay():
 
 @app.task
 def displayFrame(frame, seconds):
-    frame = msgpack.unpackb(frame, object_hook=m.decode)
-    cv2.imshow("Camera Stream", frame)
-    cv2.waitKey(seconds*1000)
+    frame = np.asarray(frame)
+    cv2.imshow("preview", frame)
+    cv2.waitKey(1000*seconds)
     
 
 #  (broker)
