@@ -14,21 +14,21 @@ def save(frame, frameNumber):
     frame = msgpack.unpackb(frame, object_hook=m.decode)
     cv2.imwrite("images/frame{}.jpg".format(frameNumber), frame)
 
-@app.task
-def initDisplay():
-    global window_handle     
-    window_handle = cv2.namedWindow("Camera Stream", cv2.WINDOW_AUTOSIZE)
+# @app.task
+# def initDisplay():
+#     global window_handle     
+#     window_handle = cv2.namedWindow("Camera Stream", cv2.WINDOW_AUTOSIZE)
 
-@app.task
-def killDisplay():
-    cv2.destroyAllWindows() 
+# @app.task
+# def killDisplay():
+#     cv2.destroyAllWindows() 
 
 
-@app.task
-def displayFrame(frame, seconds):
-    frame = np.asarray(frame)
-    cv2.imshow("preview", frame)
-    cv2.waitKey(1000*seconds)
+# @app.task
+# def displayFrame(frame, seconds):
+#     frame = np.asarray(frame)
+#     cv2.imshow("preview", frame)
+#     cv2.waitKey(1000*seconds)
     
 
 #  (broker)
