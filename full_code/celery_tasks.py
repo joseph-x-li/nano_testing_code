@@ -6,8 +6,8 @@ import msgpack_numpy as m
 
 global window_handle 
 
-# app = Celery('tasks', broker='amqp://jet2:1990@10.0.0.20:5672/master')
-app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
+app = Celery('tasks', broker='amqp://jet2:1990@172.16.0.38:5672/master')
+# app = Celery('tasks', broker='amqp://jet1:1990@localhost:5672/master')
 
 @app.task
 def save(frame, frameNumber):
