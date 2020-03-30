@@ -7,13 +7,12 @@ import numpy as np
 import msgpack
 import msgpack_numpy as m
 
-camera = csi_cam.csiCamera(display=True)
+camera = csi_cam.csiCamera()
 
 # START
 start_time = time.time()
-numFrames = 60
+numFrames = 5
 
-img = camera.getFrame()
 for i in range(numFrames):
     img = camera.getFrame()
     while img is None:
