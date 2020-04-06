@@ -13,6 +13,7 @@ app = Celery('tasks', broker='amqp://jet2:1990@172.16.0.38:5672/master')
 def save(frame, frameNumber):
     frame = msgpack.unpackb(frame, object_hook=m.decode)
     cv2.imwrite("images/frame{}.jpg".format(frameNumber), frame)
+    print(frameNumber)
 
 # @app.task
 # def initDisplay():
