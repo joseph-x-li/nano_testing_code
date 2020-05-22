@@ -9,11 +9,12 @@ s.connect(
     ("172.16.0.38", 11234)
 )
 
-for counter in range(40):
+start = time.time()
+for _ in range(40):
     full_msg = b''
     new_msg = True
     while True:
-        msg = s.recv(100000000)
+        msg = s.recv(100_000_000)
         if new_msg:
             print(f"New Message Length: {msg[:HEADERSIZE]}")
             msglen = int(msg[:HEADERSIZE])

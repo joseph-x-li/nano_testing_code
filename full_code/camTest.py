@@ -1,3 +1,5 @@
+# Takes one photo and uses celery to save it
+
 import csi_cam
 import cv2
 import time
