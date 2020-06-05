@@ -1,6 +1,6 @@
 # Own Ignores
 full_code/images
-.vscode
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
