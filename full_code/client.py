@@ -20,7 +20,7 @@ while True:
     if new_msg:
         print(f"New Message Length: {msg[:HEADERSIZE]}")
         msglen = int(msg[:HEADERSIZE])
-        new_msg = False 
+        new_msg = False
     print("mark")
     full_msg += msg
     # print(len(full_msg))
