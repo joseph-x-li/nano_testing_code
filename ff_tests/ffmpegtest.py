@@ -11,6 +11,13 @@ import ffmpeg
     .run()
 )
 
+# ----- OUTLINE -----
+# class that uses context manager. 
+# with videoStream as vs:
+#     vs.add_client(x)
+
+
+
 # import ffmpeg_streaming
 
 
