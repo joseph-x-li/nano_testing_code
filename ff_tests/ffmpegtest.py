@@ -1,15 +1,11 @@
 import ffmpeg
 
-(
-    ffmpeg.input(
-        "FaceTime",
-        format="avfoundation",
-        pix_fmt="uyvy422",
-        options={"framerate": "30", "video_size": "640x480"},
-    )
-    .output("out.mp4", pix_fmt="yuv420p", vframes=100)
-    .run()
+process = (
+    ffmpeg
+    .input('FaceTime', format='avfoundation', pix_fmt='uyvy422', framerate=30)
+    .output('out.mp4', pix_fmt='yuv420p', frames=100)
 )
+process.run()
 
 # ----- OUTLINE -----
 # class that uses context manager. 
@@ -18,7 +14,7 @@ import ffmpeg
 
 
 
-# import ffmpeg_streaming
+# import ffmpeg_streaming`
 
 
 # capture = ffmpeg_streaming.input('FaceTime', capture=True)
