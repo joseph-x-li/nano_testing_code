@@ -6,9 +6,6 @@ process = (
     .output('out.mp4', pix_fmt='yuv420p', frames=100)
 )
 process.run()
-
-class VideoStreamer():
-    def __init__(self, )
     
 
 # ----- OUTLINE -----

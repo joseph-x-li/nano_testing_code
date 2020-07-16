@@ -109,7 +109,7 @@ class csiCamera:
         self.capture_thread = Thread(target=self.frameDaemon, args=(), daemon=True)
         self.capture_thread.start()
         print("Camera Warming Up...")
-        time.sleep(2)  # wait 3 seconds for camera to boot up I guess
+        time.sleep(2)  # wait 2 seconds for camera to boot up I guess
         print("Camera On")
 
     def stopCamera(self):
