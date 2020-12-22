@@ -21,7 +21,7 @@ n = 1000 #number of times we repeat the prediction
 picture = np.random.randint(0, 255, size=(64, 64, 3))
 picture = picture/255
 frame = array([picture])
-total_time = 0;
+total_time = 0
 for i in range(n):
   start = time.time()
   hole = model.predict(x = frame, verbose=0)

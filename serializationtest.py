@@ -32,7 +32,7 @@ bytes_enc = fakeFrame.tobytes()
 end = time.time()
 bytes_enc_time = end-start
 print("Encoding type: {}".format(type(bytes_enc)))
-
+print(f"New length: {len(bytes_enc)}")
 start = time.time()
 bytes_dec = np.frombuffer(bytes_enc, dtype=np.int64).reshape((1920, 1080, 3))
 end = time.time()
@@ -50,7 +50,7 @@ msgpack_enc = msgpack.packb(fakeFrame, default=m.encode)
 end = time.time()
 print("Encoding type: {}".format(type(msgpack_enc)))
 msgpack_enc_time = end-start
-
+print(f"New length: {len(msgpack_enc)}")
 start = time.time()
 msgpack_dec = msgpack.unpackb(msgpack_enc, object_hook=m.decode)
 end = time.time()
